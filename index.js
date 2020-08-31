@@ -19,7 +19,7 @@ const app = express();
 app.set('view engine','ejs');
 app.set('views','./views');
 
-app.use(express.satic('public'));
+app.use(express.static('public'));
 app.use(useragent.express());
 app.use(express.json()); 
 app.use(express.urlencoded({ extended: true }));
