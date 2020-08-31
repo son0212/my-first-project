@@ -1,4 +1,3 @@
-const useragent = require('express-useragent');
 const listSessionId = require('../models/model.sessionId.js');
 
 module.exports = async (req,res,next)=>{
