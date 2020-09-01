@@ -8,7 +8,7 @@ module.exports = async (req,res,next)=>{
 			browser:req.useragent.browser
 		});
 		if(sessionId){
-			res.cookie('sessionId',sessionId.id);
+			res.cookie('sessionId',sessionId._id);
 		}
 		else{
 			await listSessionId.create({
@@ -21,7 +21,7 @@ module.exports = async (req,res,next)=>{
 				os:req.useragent.os,
 				browser:req.useragent.browser
 			});
-			res.cookie('sessionId',mySessionId.id);
+			res.cookie('sessionId',mySessionId._id);
 		}
 	}
 	next();
