@@ -1,4 +1,6 @@
 const listSessionId = require('../models/model.sessionId.js');
+const jwt = require('jsonwebtoken');
+require('dotenv').config();
 
 module.exports = async (req,res,next)=>{
 	if(!req.cookies.sessionId){
@@ -8,7 +10,8 @@ module.exports = async (req,res,next)=>{
 			browser:req.useragent.browser
 		});
 		if(sessionId){
-			res.cookie('sessionId',sessionId._id);
+			var token = await jwt.sign({ip:sessionId.ip,id:sessionId._id,os:sessionId.os,browser:sessionId.browser},process.env.jwt,{algorithm:"HS256"});
+			res.cookie('sessionId',token);
 		}
 		else{
 			await listSessionId.create({
@@ -21,7 +24,8 @@ module.exports = async (req,res,next)=>{
 				os:req.useragent.os,
 				browser:req.useragent.browser
 			});
-			res.cookie('sessionId',mySessionId._id);
+			var token = await jwt.sign({ip:mySessionId.ip,id:mySessionId._id,os:mySessionId.os,browser:mySessionId.browser},process.env.jwt,{algorithm:"HS256"});
+			res.cookie('sessionId',token);
 		}
 	}
 	next();
