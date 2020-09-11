@@ -10,7 +10,7 @@ router.get('/',async (req,res)=>{
 		res.redirect('/');
 	}
 	var data = await jwt.verify(req.cookies.sessionId,process.env.jwt);
-	var mySessionId = await listSessionId.findOne(data});
+	var mySessionId = await listSessionId.findOne({_id:data.id,os:data.os,ip:data.ip,browser:data.browser});
 	res.render('index',{information:mySessionId});
 });
 
@@ -19,7 +19,7 @@ router.get('/one',async (req,res)=>{
 		res.redirect('/one');
 	}
 	var data = await jwt.verify(req.cookies.sessionId,process.env.jwt);
-	var mySessionId = await listSessionId.findOne({id:data});
+	var mySessionId = await listSessionId.findOne({_id:data.id,os:data.os,ip:data.ip,browser:data.browser});
 	res.render('one',{information:mySessionId});
 });
 
