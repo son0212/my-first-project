@@ -9,8 +9,8 @@ router.get('/',async (req,res)=>{
 	if(!req.cookies.sessionId){
 		res.redirect('/');
 	}
-	var data = await jwt.verify(req.cookies.sessionId,process.env.jwt);
-	var mySessionId = await listSessionId.findOne({_id:data.id,os:data.os,ip:data.ip,browser:data.browser});
+	const data = await jwt.verify(req.cookies.sessionId,process.env.jwt);
+	const mySessionId = await listSessionId.findOne({_id:data.id,os:data.os,ip:data.ip,browser:data.browser});
 	res.render('index',{information:mySessionId});
 });
 
@@ -18,8 +18,8 @@ router.get('/one',async (req,res)=>{
 	if(!req.cookies.sessionId){
 		res.redirect('/one');
 	}
-	var data = await jwt.verify(req.cookies.sessionId,process.env.jwt);
-	var mySessionId = await listSessionId.findOne({_id:data.id,os:data.os,ip:data.ip,browser:data.browser});
+	const data = await jwt.verify(req.cookies.sessionId,process.env.jwt);
+	const mySessionId = await listSessionId.findOne({_id:data.id,os:data.os,ip:data.ip,browser:data.browser});
 	res.render('one',{information:mySessionId});
 });
 
