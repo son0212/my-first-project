@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const useragent = require('express-useragent');
 require('dotenv').config();
 
-mongoose.connect('mongodb://localhost/admin', {
+mongoose.connect(process.env.database, {
     useUnifiedTopology: true,
     useNewUrlParser: true,
     useFindAndModify: false
